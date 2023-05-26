@@ -25,6 +25,6 @@ By setting `enable-debug-mode` to `True`, the software will show the **Debug Mod
 You can easily exit the program at any time using `Ctrl+C`.
 
 ### Files Description
-The main python script is located in `stonks/stonk.py`
+The main python script is located in `stonks/stonks.py`
 
 An example config is located in `stonks/.stonks.cfg`
