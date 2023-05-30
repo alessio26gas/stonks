@@ -17,7 +17,7 @@ def main():
 
     try:
         symbols = config._sections['Portfolio']
-        for symbol in symbols: symbols[symbol] = int(symbols[symbol])
+        for symbol in symbols: symbols[symbol] = float(symbols[symbol])
         noshares = all(symbols[symbol] == 0 for symbol in symbols)
         curr = config._sections['Settings']['currency']
         delay = abs(float(config._sections['Settings']['refresh-delay']))
@@ -41,7 +41,7 @@ def main():
 
             if curr != 'USD':
                 currency = get_stock_data(curr + '=X', 0)
-                currency.name = curr + '/USD'
+                currency.name = 'USD/' + curr
 
             debugtime2 = time()
 
@@ -72,7 +72,7 @@ def main():
                 print(color(ticker.change)
                     + f"{ticker.name}".ljust(7) + f"{ticker.volume}".rjust(8) + ("  ▲ " if ticker.change >= 0 else "  ▼ ")
                     + f"{ticker.price:.2f}".rjust(7) + f"{ticker.change:+.2f}".rjust(8) + f"({ticker.percent_change:+.2f}%)".rjust(10)
-                    + ((f"{ticker.shares}".rjust(8) + f"{ticker.shares * ticker.change:+.2f}".rjust(10) 
+                    + ((f"{ticker.shares:g}".rjust(8) + f"{ticker.shares * ticker.change:+.2f}".rjust(10) 
                     + ((f"{ticker.shares * ticker.change * currency.price:+.2f}".rjust(10)) if curr != 'USD' else "")) if ticker.shares != 0 else "")
                     + "\033[0m")
             
