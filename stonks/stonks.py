@@ -31,6 +31,7 @@ def main():
     cls()
     print('\033[1mSTONKS\033[0m v1.0.0')
     print('Retrieving data...')
+    os.system('echo "\033]0;%s\007"' % "Stonks v1.0.0")
 
     executor = concurrent.futures.ThreadPoolExecutor(max_workers = len(symbols))
     start = time()
